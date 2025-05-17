@@ -1,0 +1,41 @@
+class RandomizedSet {
+public:
+    vector<int> v;
+    map<int, int> mp;
+
+    RandomizedSet() {
+        // We do not need to implement,we need to implement below functions
+    }
+
+    bool insert(int val) {
+        if (mp.find(val) == mp.end()) {
+            v.push_back(val);
+            mp[val] = v.size() - 1;
+            return true;
+        }
+        return false;
+    }
+
+    bool remove(int val) {
+        if (mp.find(val) == mp.end()) {
+            return false;
+        }
+
+        int idx = mp[val];
+        int lastElement = v.back();
+
+        v[idx] = lastElement;
+        mp[lastElement] = idx;
+
+        v.pop_back();
+        mp.erase(val);
+
+        return true;
+    }
+
+    int getRandom() {
+        int n = v.size();
+        int r = rand() % n;
+        return v[r];
+    }
+};
