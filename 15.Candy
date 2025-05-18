@@ -1,0 +1,31 @@
+class Solution {
+public:
+    int candy(vector<int>& ratings) {
+        int n=ratings.size();
+        vector<int> leftR(n,-1);
+        vector<int> rightR(n,-1);
+        leftR[0]=1;
+        for(int i=1;i<ratings.size();i++){
+          if(ratings[i]>ratings[i-1]){
+            leftR[i]=leftR[i-1]+1;
+          }
+          else
+          leftR[i]=1;
+        }
+        int last=ratings.size()-1;
+        rightR[last]=1;
+        for(int i=n-2;i>=0;i--){
+            if(ratings[i]>ratings[i+1]){
+                rightR[i]=rightR[i+1]+1;
+            }
+            else
+            rightR[i]=1;
+        }
+        int ans=0;
+        for(int i=0;i<n;i++){
+            ans+=max(leftR[i],rightR[i]);
+        }
+        return ans;
+    }
+
+};
