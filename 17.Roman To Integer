@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int romanToInt(string s) {
+        map<char, int> mp = {
+    {'I', 1},
+    {'V', 5},
+    {'X', 10},
+    {'L', 50},
+    {'C', 100},
+    {'D', 500},
+    {'M', 1000}
+};
+int n=s.length();
+int ans=mp[s[n-1]];
+int last=ans;
+for(int i=n-2;i>=0;i--){
+   int temp=mp[s[i]];
+   if(temp>=last){
+    ans+=temp;
+   }
+   else{
+    ans-=temp;
+   }
+   last=temp;
+}
+        
+return ans;
+    }
+};
