@@ -1,0 +1,24 @@
+class Solution {
+public:
+    string convert(string s, int numRows) {
+        vector<string> v;
+        int temp=0;
+        for(int i=0;i<s.length();i++){
+              if(temp==0){
+                while(temp<numRows && i<s.length()){
+                v[temp++].push_back(s[i++]);
+                }
+              }  
+              if(temp==numRows-1){
+                while(temp!=0 && i<s.length()){
+                    v[temp--].push_back(s[i++]);
+                }
+              }
+        }
+        string ans="";
+        for(auto i:v){
+            ans+=i;
+        }
+        return ans;
+    }
+};
