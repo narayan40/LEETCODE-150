@@ -1,0 +1,42 @@
+class Solution {
+public:
+    string reverseWords(string s) {
+        string ans="";
+        // first step reverse the string
+        reverse(s.begin(), s.end());
+        // iterate through the string and push in stack following condition if
+        // st.top=space and s[i]==space then skip else push
+        stack<char>st;
+        st.push(' ');
+        for(int i=0;i<s.length();i++){
+           if(s[i]==' '){
+            while(!st.empty()){
+            ans.push_back(st.top());
+            st.pop();
+        }
+        if(ans[ans.length()-1]!=' '){
+            ans.push_back(' ');
+        }
+           }else{
+            st.push(s[i]);
+           }
+        }
+          while(!st.empty()){
+            ans.push_back(st.top());
+            st.pop();
+        }
+        for(int i=0;i<ans.length();i++){
+            if(ans[i]==' '){
+                ans.erase(i,1);
+            }
+            break;
+        }
+        for(int i=ans.length()-1;i>=0;i--){
+            if(ans[i]==' '){
+                ans.pop_back();
+            }
+            break;
+        }
+        return ans;
+    }
+};
