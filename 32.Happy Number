@@ -1,0 +1,24 @@
+class Solution {
+public:
+    bool isHappy(int n) {
+        map<int, bool> mp;
+        while (true) {
+            int sum = 0;
+            while (n != 0) {
+                sum += pow(n % 10, 2);
+                n = n / 10;
+            }
+            if(sum==1){
+                return true;
+            }
+            if(mp.find(sum)!=mp.end()){
+                return false;
+            }
+            else{
+                n=sum;
+                mp[sum]=true;
+            }
+        }
+        
+    }
+};
