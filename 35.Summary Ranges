@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<string> summaryRanges(vector<int>& arr) {
+        if (arr.empty()) return {};
+        
+        vector<string> ans;
+        long long left = arr[0];
+        long long right = arr[0];
+        
+        for (int i = 1; i < arr.size(); i++) {
+            if ((long long)arr[i] - (long long)arr[i - 1] == 1) {
+                right = arr[i];
+            } else {
+                if (left != right) {
+                    ans.push_back(to_string(left) + "->" + to_string(right));
+                } else {
+                    ans.push_back(to_string(left));
+                }
+                left = right = arr[i];
+            }
+        }
+        
+        // Final range
+        if (left != right) {
+            ans.push_back(to_string(left) + "->" + to_string(right));
+        } else {
+            ans.push_back(to_string(left));
+        }
+        
+        return ans;
+    }
+};
