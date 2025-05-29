@@ -11,6 +11,8 @@ public:
         vector<int> ans;
         while(count!=0){
           for(int i=scol;i<=ecol && count>0;i++){
+
+
             ans.push_back(matrix[srow][i]);
             count--;
           }
