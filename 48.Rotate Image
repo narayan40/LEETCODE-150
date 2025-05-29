@@ -1,0 +1,27 @@
+class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix) {
+        //to solve this question first transpose the matrix
+        //and then reverse it
+        //transpose means that make the row column and column into row
+        int row=matrix.size();
+        int col=matrix[0].size();
+        //logic for transposing the array
+        for(int i=0;i<row;i++){
+            for(int j=i;j<col;j++){
+                swap(matrix[i][j],matrix[j][i]);
+            }
+        }
+        //now after transpose swap each individual row;
+        for(int i=0;i<row;i++){
+           int st=0;
+           int e=col-1;
+           while(st<e){
+            swap(matrix[i][st],matrix[i][e]);
+            st++;
+            e--;
+           }
+        }
+        
+    }
+};
