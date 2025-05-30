@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    string simplifyPath(string path) {
+        stringstream ss(path);
+        string token;
+        stack<string> st;
+
+        // Split the path by '/' and process parts
+        while (getline(ss, token, '/')) {
+            if (token == "" || token == ".") continue;
+            if (token == "..") {
+                if (!st.empty()) st.pop();
+            } else {
+                st.push(token);
+            }
+        }
+
+        // Build the final simplified path
+        string ans = "";
+        vector<string> parts;
+        while (!st.empty()) {
+            parts.push_back(st.top());
+            st.pop();
+        }
+        reverse(parts.begin(), parts.end());
+        for (const string& dir : parts) {
+            ans += "/" + dir;
+        }
+
+        return ans.empty() ? "/" : ans;
+    }
+};
